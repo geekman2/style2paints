@@ -19,16 +19,15 @@ def ToGray(x):
 
 
 session = keras.backend.get_session()
-
 with tf.device(strg0):
-    line_head = load_model('line_head.net')
-    noise_tail = load_model('noise_tail.net')
-    clear_tail = load_model('clear_tail.net')
+    line_head = load_model('model/line_head.net')
+    noise_tail = load_model('model/noise_tail.net')
+    clear_tail = load_model('model/clear_tail.net')
 
 with tf.device(strg1):
-    base_head = load_model('base_head.net')
-    base_neck = load_model('base_neck.net')
-    base_reader = load_model('base_reader.net')
+    base_head = load_model('model/base_head.net')
+    base_neck = load_model('model/base_neck.net')
+    base_reader = load_model('model/base_reader.net')
 
 ip1 = tf.placeholder(dtype=tf.float32, shape=(None, None, None, 1))
 ip3 = tf.placeholder(dtype=tf.float32, shape=(None, None, None, 3))
@@ -61,12 +60,12 @@ with tf.device(strg1):
 
 session.run(tf.global_variables_initializer())
 
-line_head.load_weights('line_head.net')
-base_head.load_weights('base_head.net')
-base_neck.load_weights('base_neck.net')
-noise_tail.load_weights('noise_tail.net')
-clear_tail.load_weights('clear_tail.net')
-base_reader.load_weights('base_reader.net')
+line_head.load_weights('model/line_head.net')
+base_head.load_weights('model/base_head.net')
+base_neck.load_weights('model/base_neck.net')
+noise_tail.load_weights('model/noise_tail.net')
+clear_tail.load_weights('model/clear_tail.net')
+base_reader.load_weights('model/base_reader.net')
 
 
 def go_head(sketch, global_hint, local_hint):

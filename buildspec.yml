@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login)
+      - $(aws ecr get-login --no-include-email --$AWS_REG)
   build:
     commands:
       - docker build -t $IMAGE_REPO_NAME .

@@ -6,7 +6,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_REG)
   build:
     commands:
-      - docker build -t $IMAGE_REPO_NAME .
+      - docker build -t $IMAGE_REPO_NAME -f gpu.Dockerfile .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
   post_build:
     commands:
